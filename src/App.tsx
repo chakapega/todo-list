@@ -1,12 +1,13 @@
 import React from 'react';
+import { Container } from '@material-ui/core';
 
 import AddNewTask from './components/AddNewTaskForm';
 
 const App = (): JSX.Element => {
   return (
-    <div className="app-container">
+    <Container>
       <AddNewTask />
-    </div>
+    </Container>
   );
 };
 

@@ -1,15 +1,19 @@
 import React from 'react';
-
-import './AddNewTaskForm.css';
+import { Container, Grid, Typography, TextField, Button } from '@material-ui/core';
 
 const AddNewTaskForm = (): JSX.Element => {
   return (
-    <form className="add-new-task-form">
-      <input className="add-new-task-form__input" type="text" placeholder="Write your task" />
-      <button className="add-new-task-form__button_submit" type="submit">
-        Add
-      </button>
-    </form>
+    <Container>
+      <Typography variant="h5">Add new task</Typography>
+      <Grid>
+        <TextField variant="outlined" label="Write your task" />
+      </Grid>
+      <Grid>
+        <Button type="button" color="primary" variant="contained">
+          Add
+        </Button>
+      </Grid>
+    </Container>
   );
 };
 
