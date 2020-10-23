@@ -1,9 +1,13 @@
 import React from 'react';
 
-import './App.css';
+import AddNewTask from './components/AddNewTaskForm';
 
-const App = () => {
-  return <h1>Hello</h1>;
+const App = (): JSX.Element => {
+  return (
+    <div className="app-container">
+      <AddNewTask />
+    </div>
+  );
 };
 
 export default App;
