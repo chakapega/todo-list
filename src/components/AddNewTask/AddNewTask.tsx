@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+
 import { Container, Grid, Typography, TextField, Button } from '@material-ui/core';
 
-const AddNewTask = (): JSX.Element => {
+type AddNewTaskProps = {
+  updateTasks: () => void;
+};
+
+const AddNewTask = ({ updateTasks }: AddNewTaskProps): JSX.Element => {
   const [taskDescription, setTaskDescription] = useState('');
 
   const onLabelChange = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
@@ -19,6 +24,7 @@ const AddNewTask = (): JSX.Element => {
 
     arrayOfTasks.push(taskDescription);
     localStorage.setItem('arrayOfTasks', JSON.stringify(arrayOfTasks));
+    updateTasks();
     setTaskDescription('');
   };
 
