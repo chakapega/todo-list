@@ -3,23 +3,26 @@ import React, { useState, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import AddNewTask from '../AddNewTask/AddNewTask';
 import TaskList from '../TaskList/TaskList';
+import { tasks } from '../../types/types';
 
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
+  useEffect((): void => {
     updateTasks();
   }, []);
 
   const updateTasks = (): void => {
-    const tasks = JSON.parse(localStorage.getItem('arrayOfTasks'));
+    setTasks(JSON.parse(localStorage.getItem('tasks')) || []);
+  };
 
-    setTasks(tasks);
+  const saveTasks = (tasks: tasks): void => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
   return (
     <Container>
-      <AddNewTask updateTasks={updateTasks} />
+      <AddNewTask tasks={tasks} updateTasks={updateTasks} saveTasks={saveTasks} />
       <TaskList tasks={tasks} />
     </Container>
   );

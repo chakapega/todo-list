@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
 import { Container, Grid, Typography, TextField, Button } from '@material-ui/core';
+import { AddNewTaskProps, task } from '../../types/types';
 
-type AddNewTaskProps = {
-  updateTasks: () => void;
-};
-
-const AddNewTask = ({ updateTasks }: AddNewTaskProps): JSX.Element => {
+const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskProps): JSX.Element => {
   const [taskDescription, setTaskDescription] = useState('');
 
   const onLabelChange = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
@@ -14,16 +11,17 @@ const AddNewTask = ({ updateTasks }: AddNewTaskProps): JSX.Element => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (taskDescription) saveTask(taskDescription);
+    if (taskDescription) addTask(taskDescription);
   };
 
-  const saveTask = (taskDescription: string): void => {
-    const arrayOfTasks: Array<string> = JSON.parse(localStorage.getItem('arrayOfTasks'))
-      ? JSON.parse(localStorage.getItem('arrayOfTasks'))
-      : [];
+  const addTask = (taskDescription: string): void => {
+    const task: task = {
+      id: tasks.length,
+      taskDescription,
+    };
 
-    arrayOfTasks.push(taskDescription);
-    localStorage.setItem('arrayOfTasks', JSON.stringify(arrayOfTasks));
+    tasks.push(task);
+    saveTasks(tasks);
     updateTasks();
     setTaskDescription('');
   };

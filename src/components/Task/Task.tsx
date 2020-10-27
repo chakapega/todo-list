@@ -1,17 +1,16 @@
 import React from 'react';
 
 import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { TaskProps } from '../../types/types';
 
-type TaskProps = { task?: string };
-
-const Task = ({ task }: TaskProps): JSX.Element => {
+const Task = ({ taskDescription }: TaskProps): JSX.Element => {
   return (
     <ListItem>
       <ListItemIcon>
-        <CancelIcon />
+        <DeleteForeverIcon />
       </ListItemIcon>
-      <ListItemText primary={task} />
+      <ListItemText primary={taskDescription} />
     </ListItem>
   );
 };
