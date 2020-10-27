@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
-import { AddNewTaskProps, task } from '../../types/types';
+import { AddNewTaskPropsType, taskType } from '../../types/types';
 
 const useStyles = makeStyles({
   container: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskProps): JSX.Element => {
+const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskPropsType): JSX.Element => {
   const classes = useStyles();
 
   const [taskDescription, setTaskDescription] = useState('');
@@ -39,7 +39,7 @@ const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskProps): JSX.Ele
   };
 
   const addTask = (taskDescription: string): void => {
-    const task: task = {
+    const task: taskType = {
       id: tasks.length,
       taskDescription,
     };

@@ -13,6 +13,10 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8081,
   },
   module: {
     rules: [

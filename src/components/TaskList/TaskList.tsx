@@ -2,12 +2,12 @@ import React from 'react';
 
 import { List } from '@material-ui/core';
 import Task from '../Task/Task';
-import { TaskListProps, task } from '../../types/types';
+import { TaskListPropsType, taskType } from '../../types/types';
 
-const TaskList = ({ tasks, deleteTask }: TaskListProps): JSX.Element => {
+const TaskList = ({ tasks, deleteTask }: TaskListPropsType): JSX.Element => {
   return (
     <List>
-      {tasks.map((task: task) => {
+      {tasks.map((task: taskType) => {
         const { id } = task;
 
         return <Task key={id} task={task} deleteTask={deleteTask} />;

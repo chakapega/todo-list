@@ -1,24 +1,24 @@
-type deleteTask = (taskId: number) => void;
+type deleteTaskType = (taskId: number) => void;
 
-export type task = {
+export type taskType = {
   id: number;
   taskDescription: string;
 };
 
-export type tasks = Array<task>;
+export type tasksType = Array<taskType>;
 
-export type AddNewTaskProps = {
-  tasks: tasks;
+export type AddNewTaskPropsType = {
+  tasks: tasksType;
   updateTasks: () => void;
-  saveTasks: (tasks: tasks) => void;
+  saveTasks: (tasks: tasksType) => void;
 };
 
-export type TaskListProps = {
-  tasks: tasks;
-  deleteTask: deleteTask;
+export type TaskListPropsType = {
+  tasks: tasksType;
+  deleteTask: deleteTaskType;
 };
 
-export type TaskProps = {
-  task: task;
-  deleteTask: deleteTask;
+export type TaskPropsType = {
+  task: taskType;
+  deleteTask: deleteTaskType;
 };

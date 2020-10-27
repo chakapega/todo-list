@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import AddNewTask from '../AddNewTask/AddNewTask';
 import TaskList from '../TaskList/TaskList';
-import { tasks } from '../../types/types';
+import { tasksType } from '../../types/types';
 
 const useStyles = makeStyles({
   container: {
@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
     setTasks(JSON.parse(localStorage.getItem('tasks')) || []);
   };
 
-  const saveTasks = (tasks: tasks): void => {
+  const saveTasks = (tasks: tasksType): void => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
