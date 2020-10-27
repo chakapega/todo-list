@@ -1,18 +1,35 @@
 import React from 'react';
 
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { ListItem, ListItemText } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { TaskProps } from '../../types/types';
 
+const useStyles = makeStyles({
+  listItem: {
+    width: '600px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    border: '1px solid #c4c4c4',
+    borderRadius: '3px',
+    margin: '7px 0',
+    color: '#757575',
+  },
+  deleteForeverIcon: {
+    cursor: 'pointer',
+  },
+});
+
 const Task = ({ task, deleteTask }: TaskProps): JSX.Element => {
+  const classes = useStyles();
+
   const { id, taskDescription } = task;
 
   return (
-    <ListItem>
-      <ListItemIcon>
-        <DeleteForeverIcon onClick={() => deleteTask(id)} />
-      </ListItemIcon>
+    <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
+      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={() => deleteTask(id)} />
     </ListItem>
   );
 };

@@ -1,3 +1,5 @@
+type deleteTask = (taskId: number) => void;
+
 export type task = {
   id: number;
   taskDescription: string;
@@ -11,6 +13,12 @@ export type AddNewTaskProps = {
   saveTasks: (tasks: tasks) => void;
 };
 
-export type TaskListProps = { tasks: tasks; deleteTask: (taskId: number) => void };
+export type TaskListProps = {
+  tasks: tasks;
+  deleteTask: deleteTask;
+};
 
-export type TaskProps = { task: task; deleteTask: (taskId: number) => void };
+export type TaskProps = {
+  task: task;
+  deleteTask: deleteTask;
+};

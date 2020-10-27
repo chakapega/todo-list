@@ -11,7 +11,6 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '50px',
   },
 });
 
@@ -32,7 +31,7 @@ const App = (): JSX.Element => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
-  const deleteTask = (taskId: number) => {
+  const deleteTask = (taskId: number): void => {
     const filteredTasks = tasks.filter((task) => task.id !== taskId);
 
     saveTasks(filteredTasks);

@@ -11,6 +11,8 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: '50px',
+    marginBottom: '20px',
   },
   form: {
     width: '500px',
@@ -58,6 +60,9 @@ const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskProps): JSX.Ele
           label="Write your task"
           value={taskDescription}
           onChange={onLabelChange}
+          inputProps={{
+            maxLength: 333,
+          }}
         />
         <Button type="submit" color="primary" variant="contained">
           Add
