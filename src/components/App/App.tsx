@@ -20,10 +20,17 @@ const App = (): JSX.Element => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
+  const deleteTask = (taskId: number) => {
+    const filteredTasks = tasks.filter((task) => task.id !== taskId);
+
+    saveTasks(filteredTasks);
+    updateTasks();
+  };
+
   return (
     <Container>
       <AddNewTask tasks={tasks} updateTasks={updateTasks} saveTasks={saveTasks} />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </Container>
   );
 };

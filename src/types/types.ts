@@ -11,6 +11,6 @@ export type AddNewTaskProps = {
   saveTasks: (tasks: tasks) => void;
 };
 
-export type TaskListProps = { tasks: tasks };
+export type TaskListProps = { tasks: tasks; deleteTask: (taskId: number) => void };
 
-export type TaskProps = { taskDescription: string };
+export type TaskProps = { task: task; deleteTask: (taskId: number) => void };
