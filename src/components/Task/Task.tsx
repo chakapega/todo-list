@@ -29,7 +29,7 @@ const Task = ({ task, deleteTask }: TaskPropsType): JSX.Element => {
   return (
     <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
-      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={() => deleteTask(id)} />
+      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={(): void => deleteTask(id)} />
     </ListItem>
   );
 };

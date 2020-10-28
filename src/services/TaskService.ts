@@ -8,7 +8,7 @@ class TaskService {
   };
 
   notify = (): void => {
-    this.functionsSubscribers.forEach((functionSubscriber) => functionSubscriber());
+    this.functionsSubscribers.forEach((functionSubscriber: functionSubscriberType): void => functionSubscriber());
   };
 
   getTasks = (): tasksType => {
@@ -21,7 +21,7 @@ class TaskService {
 
   deleteTask = (id: number): void => {
     const tasks: tasksType = this.getTasks();
-    const filteredTasks = tasks.filter((task) => task.id !== id);
+    const filteredTasks = tasks.filter((task: taskType): boolean => task.id !== id);
 
     this.saveTasks(filteredTasks);
     this.notify();
