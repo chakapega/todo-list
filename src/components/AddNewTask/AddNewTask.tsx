@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
-import TaskService from '../../services/TaskService';
+import taskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   container: {
@@ -30,7 +30,7 @@ const AddNewTask = (): JSX.Element => {
 
   const [taskDescription, setTaskDescription] = useState('');
 
-  const { addTask } = new TaskService();
+  const { addTask } = taskService;
 
   const onLabelChange = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
 

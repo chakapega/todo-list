@@ -1,19 +1,30 @@
-import { taskType, tasksType } from '../types/types';
+import { functionsSubscribersType, functionSubscriberType, taskType, tasksType } from '../types/types';
 
-export default class TaskService {
-  getTasks(): tasksType {
+class TaskService {
+  functionsSubscribers: functionsSubscribersType = [];
+
+  subscribe = (functionSubscriber: functionSubscriberType): void => {
+    this.functionsSubscribers.push(functionSubscriber);
+  };
+
+  notify = (): void => {
+    this.functionsSubscribers.forEach((functionSubscriber) => functionSubscriber());
+  };
+
+  getTasks = (): tasksType => {
     return JSON.parse(localStorage.getItem('tasks')) || [];
-  }
+  };
 
-  saveTasks(tasks: tasksType): void {
+  saveTasks = (tasks: tasksType): void => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
+  };
 
   deleteTask = (id: number): void => {
     const tasks: tasksType = this.getTasks();
     const filteredTasks = tasks.filter((task) => task.id !== id);
 
     this.saveTasks(filteredTasks);
+    this.notify();
   };
 
   addTask = (taskDescription: string): void => {
@@ -25,5 +36,10 @@ export default class TaskService {
 
     tasks.push(task);
     this.saveTasks(tasks);
+    this.notify();
   };
 }
+
+const taskService = new TaskService();
+
+export default taskService;

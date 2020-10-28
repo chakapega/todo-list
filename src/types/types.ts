@@ -8,5 +8,8 @@ export type tasksType = Array<taskType>;
 export type TaskPropsType = {
   task: taskType;
   deleteTask: (taskId: number) => void;
-  updateTasks: () => void;
 };
+
+export type functionSubscriberType = () => void;
+
+export type functionsSubscribersType = Array<functionSubscriberType>;
