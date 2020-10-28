@@ -21,15 +21,20 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task, deleteTask }: TaskPropsType): JSX.Element => {
+const Task = ({ task, deleteTask, updateTasks }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
 
   const { id, taskDescription } = task;
 
+  const deleteTaskHandler = (): void => {
+    deleteTask(id);
+    updateTasks();
+  };
+
   return (
     <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
-      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={() => deleteTask(id)} />
+      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={deleteTaskHandler} />
     </ListItem>
   );
 };

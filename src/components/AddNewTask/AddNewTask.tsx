@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
-import { AddNewTaskPropsType, taskType } from '../../types/types';
+import TaskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   container: {
@@ -25,35 +25,28 @@ const useStyles = makeStyles({
   },
 });
 
-const AddNewTask = ({ tasks, updateTasks, saveTasks }: AddNewTaskPropsType): JSX.Element => {
+const AddNewTask = (): JSX.Element => {
   const classes = useStyles();
 
   const [taskDescription, setTaskDescription] = useState('');
 
+  const { addTask } = new TaskService();
+
   const onLabelChange = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const addTaskHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (taskDescription) addTask(taskDescription);
-  };
-
-  const addTask = (taskDescription: string): void => {
-    const task: taskType = {
-      id: tasks.length,
-      taskDescription,
-    };
-
-    tasks.push(task);
-    saveTasks(tasks);
-    updateTasks();
-    setTaskDescription('');
+    if (taskDescription) {
+      addTask(taskDescription);
+      setTaskDescription('');
+    }
   };
 
   return (
     <Container className={classes.container}>
       <Typography variant="h5">Add new task</Typography>
-      <form className={classes.form} onSubmit={onSubmit}>
+      <form className={classes.form} onSubmit={addTaskHandler}>
         <TextField
           className={classes.textField}
           variant="outlined"

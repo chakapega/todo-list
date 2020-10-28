@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { List } from '@material-ui/core';
 import Task from '../Task/Task';
-import { TaskListPropsType, taskType } from '../../types/types';
+import { taskType } from '../../types/types';
+import TaskService from '../../services/TaskService';
 
-const TaskList = ({ tasks, deleteTask }: TaskListPropsType): JSX.Element => {
+const TaskList = (): JSX.Element => {
+  const taskService = new TaskService();
+
+  const [tasks, setTasks] = useState([]);
+
+  useEffect((): void => {
+    updateTasks();
+  }, []);
+
+  const updateTasks = (): void => {
+    setTasks(taskService.getTasks());
+  };
+
   return (
     <List>
       {tasks.map((task: taskType) => {
         const { id } = task;
 
-        return <Task key={id} task={task} deleteTask={deleteTask} />;
+        return <Task key={id} task={task} deleteTask={taskService.deleteTask} updateTasks={updateTasks} />;
       })}
     </List>
   );
