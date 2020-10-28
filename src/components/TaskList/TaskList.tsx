@@ -6,7 +6,7 @@ import { taskType } from '../../types/types';
 import TaskService from '../../services/TaskService';
 
 const TaskList = (): JSX.Element => {
-  const taskService = new TaskService();
+  const { getTasks, deleteTask } = new TaskService();
 
   const [tasks, setTasks] = useState([]);
 
@@ -15,7 +15,7 @@ const TaskList = (): JSX.Element => {
   }, []);
 
   const updateTasks = (): void => {
-    setTasks(taskService.getTasks());
+    setTasks(getTasks());
   };
 
   return (
@@ -23,7 +23,7 @@ const TaskList = (): JSX.Element => {
       {tasks.map((task: taskType) => {
         const { id } = task;
 
-        return <Task key={id} task={task} deleteTask={taskService.deleteTask} updateTasks={updateTasks} />;
+        return <Task key={id} task={task} deleteTask={deleteTask} updateTasks={updateTasks} />;
       })}
     </List>
   );
