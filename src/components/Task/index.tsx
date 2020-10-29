@@ -3,7 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import { TaskPropsType } from '../../types/types';
+import { TaskPropsType } from '../../types';
+import taskService from '../../services';
 
 const useStyles = makeStyles({
   listItem: {
@@ -21,10 +22,10 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task, deleteTask }: TaskPropsType): JSX.Element => {
+const Task = ({ task: { id, taskDescription } }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
 
-  const { id, taskDescription } = task;
+  const { deleteTask } = taskService;
 
   return (
     <ListItem className={classes.listItem}>

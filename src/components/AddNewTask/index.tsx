@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
-import taskService from '../../services/TaskService';
+import taskService from '../../services';
 
 const useStyles = makeStyles({
   container: {
@@ -37,10 +37,8 @@ const AddNewTask = (): JSX.Element => {
   const addTaskHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (taskDescription) {
-      addTask(taskDescription);
-      setTaskDescription('');
-    }
+    addTask(taskDescription);
+    setTaskDescription('');
   };
 
   return (
@@ -57,7 +55,7 @@ const AddNewTask = (): JSX.Element => {
             maxLength: 333,
           }}
         />
-        <Button type="submit" color="primary" variant="contained">
+        <Button type="submit" color="primary" variant="contained" disabled={!taskDescription}>
           Add
         </Button>
       </form>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import { List } from '@material-ui/core';
-import Task from '../Task/Task';
-import { taskType } from '../../types/types';
-import taskService from '../../services/TaskService';
+import Task from '../Task';
+import { TaskType } from '../../types';
+import taskService from '../../services';
 
 const TaskList = (): JSX.Element => {
-  const { subscribe, getTasks, deleteTask } = taskService;
+  const { subscribe, getTasks } = taskService;
 
   const [tasks, setTasks] = useState([]);
 
@@ -21,10 +21,10 @@ const TaskList = (): JSX.Element => {
 
   return (
     <List>
-      {tasks.map((task: taskType) => {
+      {tasks.map((task: TaskType) => {
         const { id } = task;
 
-        return <Task key={id} task={task} deleteTask={deleteTask} />;
+        return <Task key={id} task={task} />;
       })}
     </List>
   );
