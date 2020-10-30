@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
+    <Container data-testid="app-container" className={classes.container}>
       <AddNewTask />
       <TaskList />
     </Container>
