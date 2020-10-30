@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import AddNewTask from '../AddNewTask';
@@ -17,7 +16,7 @@ const App = (): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Container data-testid="app-container" className={classes.container}>
+    <Container data-testid='app-container' className={classes.container}>
       <AddNewTask />
       <TaskList />
     </Container>

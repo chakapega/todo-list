@@ -1,14 +1,14 @@
 import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 import App from '../components/App';
 
 const renderComponent = () => render(<App />);
 
 describe('App', () => {
-  it('renders App component', () => {
+  it('renders Container', () => {
     const { getByTestId } = renderComponent();
-    const appContainer = getByTestId('app-container');
 
-    expect(appContainer).toBeDefined();
+    expect(getByTestId('app-container')).toBeInTheDocument();
   });
 });
