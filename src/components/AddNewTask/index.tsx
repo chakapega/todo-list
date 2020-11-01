@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
-import taskService from '../../services';
+import taskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   container: {

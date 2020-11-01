@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { TaskPropsType } from '../../types';
-import taskService from '../../services';
+import taskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   listItem: {

@@ -2,9 +2,9 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
 import AddNewTask from '../components/AddNewTask';
-import taskService from '../services';
+import taskService from '../services/TaskService';
 
-jest.mock('../services/index.ts', () => ({ addTask: jest.fn() }));
+jest.mock('../services/TaskService.ts', () => ({ addTask: jest.fn() }));
 
 const renderComponent = () => render(<AddNewTask />);
 
@@ -31,8 +31,10 @@ describe('AddNewTask', () => {
 
   it('renders TextField', () => {
     const { container } = renderComponent();
+    const textFieldLabel = container.querySelector('label');
 
-    expect(container.querySelector('label')).toBeInTheDocument();
+    expect(textFieldLabel).toBeInTheDocument();
+    expect(textFieldLabel).toHaveTextContent('Write your task');
     expect(container.querySelector('input')).toBeInTheDocument();
   });
 
@@ -48,15 +50,16 @@ describe('AddNewTask', () => {
     const { container } = renderComponent();
     const button = container.querySelector('button');
 
-    expect(button.disabled).toBe(true);
+    expect(button).toBeDisabled();
     fireEvent.change(container.querySelector('input'), { target: { value: 'writed text' } });
-    expect(button.disabled).toBe(false);
+    expect(button).not.toBeDisabled();
   });
 
-  it('checks the form submit event', () => {
+  it('checks the call to the addTask method from the service', () => {
     const { container } = renderComponent();
+    const { addTask } = taskService;
 
     fireEvent.submit(container.querySelector('form'));
-    expect(taskService.addTask).toHaveBeenCalled();
+    expect(addTask).toBeCalled();
   });
 });

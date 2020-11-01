@@ -7,8 +7,8 @@ const renderComponent = () => render(<App />);
 
 describe('App', () => {
   it('renders Container', () => {
-    const { getByTestId } = renderComponent();
+    const { container } = renderComponent();
 
-    expect(getByTestId('app-container')).toBeInTheDocument();
+    expect(container.firstChild).toBeInTheDocument();
   });
 });
