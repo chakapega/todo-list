@@ -1,4 +1,6 @@
-const catchError = fn => async (req, res, next) => {
+export {};
+
+const catchError = (fn) => async (req, res, next) => {
   try {
     return await fn(req, res, next);
   } catch (error) {
