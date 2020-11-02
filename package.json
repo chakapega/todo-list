@@ -5,10 +5,11 @@
   "main": "index.tsx",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "build": "webpack --config webpack.config.js",
     "start": "webpack serve",
     "lint": "eslint ./",
-    "lint-fix": "eslint ./ --fix"
+    "lint:fix": "eslint ./ --fix"
   },
   "repository": {
     "type": "git",
