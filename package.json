@@ -2,8 +2,9 @@
   "name": "todo-list",
   "version": "1.0.0",
   "description": "todo list application BE",
-  "main": "index.tsx",
+  "main": "./dist/server.js",
   "scripts": {
+    "start": "tsc && node ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/chakapega/todo-list/issues"
   },
-  "homepage": "https://github.com/chakapega/todo-list#readme"
+  "homepage": "https://github.com/chakapega/todo-list#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-status-codes": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "typescript": "^4.0.5"
+  }
 }
