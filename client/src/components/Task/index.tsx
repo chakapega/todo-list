@@ -24,12 +24,12 @@ const useStyles = makeStyles({
 const Task = ({ task: { id, taskDescription } }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
 
-  const { deleteTask } = taskService;
+  // const { deleteTask } = taskService;
 
   return (
     <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
-      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={(): void => deleteTask(id)} />
+      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={(): void => console.log('delete task')} />
     </ListItem>
   );
 };

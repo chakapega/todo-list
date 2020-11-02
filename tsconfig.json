@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "sourceMap": true,
-    "noImplicitAny": true
   },
   "exclude": ["node_modules", "client"]
 }

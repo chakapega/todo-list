@@ -5,16 +5,15 @@ import { TaskType } from '../../types';
 import taskService from '../../services/TaskService';
 
 const TaskList = (): JSX.Element => {
-  const { subscribe, getTasks } = taskService;
+  const { get } = taskService;
 
   const [tasks, setTasks] = useState([]);
 
-  const updateTasks = (): void => {
-    setTasks(getTasks());
+  const updateTasks = async (): Promise<void> => {
+    setTasks(await get());
   };
 
   useEffect((): void => {
-    subscribe(updateTasks);
     updateTasks();
   }, []);
 
