@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText } from '@material-ui/core';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { TaskPropsType } from '../../types';
 import taskService from '../../services/TaskService';
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task: { id, taskDescription } }: TaskPropsType): JSX.Element => {
+const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
 
   // const { deleteTask } = taskService;
@@ -29,7 +30,12 @@ const Task = ({ task: { id, taskDescription } }: TaskPropsType): JSX.Element => 
   return (
     <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
-      <DeleteForeverIcon className={classes.deleteForeverIcon} onClick={(): void => console.log('delete task')} />
+      <DateRangeIcon titleAccess={date} />
+      <DeleteForeverIcon
+        className={classes.deleteForeverIcon}
+        titleAccess='delete task'
+        onClick={(): void => console.log('delete task')}
+      />
     </ListItem>
   );
 };

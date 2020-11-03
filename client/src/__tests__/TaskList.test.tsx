@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 import TaskList from '../components/TaskList';
-import taskService from '../services/TaskService';
+// import taskService from '../services/TaskService';
 
 const renderComponent = () => render(<TaskList />);
 const mockTasks = [
@@ -25,19 +25,19 @@ describe('TaskList', () => {
     expect(container.firstChild).toBeInTheDocument();
   });
 
-  it('checks the call to the subscribe method from the service', () => {
-    renderComponent();
+  // it('checks the call to the subscribe method from the service', () => {
+  //   renderComponent();
 
-    const { subscribe } = taskService;
+  //   const { subscribe } = taskService;
 
-    expect(subscribe).toBeCalled();
-  });
+  //   expect(subscribe).toBeCalled();
+  // });
 
-  it('checks the call to the getTasks method from the service', () => {
-    renderComponent();
+  // it('checks the call to the getTasks method from the service', () => {
+  //   renderComponent();
 
-    const { getTasks } = taskService;
+  //   const { getTasks } = taskService;
 
-    expect(getTasks).toBeCalled();
-  });
+  //   expect(getTasks).toBeCalled();
+  // });
 });

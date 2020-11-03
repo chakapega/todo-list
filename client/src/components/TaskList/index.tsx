@@ -5,9 +5,9 @@ import { TaskType } from '../../types';
 import taskService from '../../services/TaskService';
 
 const TaskList = (): JSX.Element => {
-  const { get } = taskService;
-
   const [tasks, setTasks] = useState([]);
+
+  const { get } = taskService;
 
   const updateTasks = async (): Promise<void> => {
     setTasks(await get());

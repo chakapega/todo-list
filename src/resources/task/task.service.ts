@@ -4,4 +4,6 @@ const taskDbRepository = require('./task.db.repository');
 
 const get = () => taskDbRepository.get();
 
-module.exports = { get };
+const add = (task) => taskDbRepository.add(task);
+
+module.exports = { get, add };

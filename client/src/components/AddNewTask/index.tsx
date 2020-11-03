@@ -29,14 +29,14 @@ const AddNewTask = (): JSX.Element => {
 
   const [taskDescription, setTaskDescription] = useState('');
 
-  // const { addTask } = taskService;
+  const { add } = taskService;
 
   const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
 
   const addTaskHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    // addTask(taskDescription);
+    add(taskDescription);
     setTaskDescription('');
   };
 

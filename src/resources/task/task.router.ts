@@ -13,4 +13,12 @@ taskRouter.route('/tasks').get(
   }),
 );
 
+taskRouter.route('/add-task').post(
+  catchError((req, res) => {
+    taskService.add(req.body);
+
+    res.status(OK).json();
+  }),
+);
+
 module.exports = taskRouter;
