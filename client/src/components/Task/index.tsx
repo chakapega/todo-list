@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
 
-  // const { deleteTask } = taskService;
+  const { deleteTask } = taskService;
 
   return (
     <ListItem className={classes.listItem}>
@@ -34,7 +34,7 @@ const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Eleme
       <DeleteForeverIcon
         className={classes.deleteForeverIcon}
         titleAccess='delete task'
-        onClick={(): void => console.log('delete task')}
+        onClick={(): Promise<void> => deleteTask(id)}
       />
     </ListItem>
   );

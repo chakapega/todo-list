@@ -7,13 +7,14 @@ import taskService from '../../services/TaskService';
 const TaskList = (): JSX.Element => {
   const [tasks, setTasks] = useState([]);
 
-  const { get } = taskService;
+  const { subscribe, get } = taskService;
 
   const updateTasks = async (): Promise<void> => {
     setTasks(await get());
   };
 
   useEffect((): void => {
+    subscribe(updateTasks);
     updateTasks();
   }, []);
 

@@ -1,6 +1,6 @@
 export {};
 
-const catchError = (fn) => async (req, res, next) => {
+const errorCatcher = (fn) => async (req, res, next) => {
   try {
     return await fn(req, res, next);
   } catch (error) {
@@ -8,4 +8,4 @@ const catchError = (fn) => async (req, res, next) => {
   }
 };
 
-module.exports = catchError;
+module.exports = errorCatcher;

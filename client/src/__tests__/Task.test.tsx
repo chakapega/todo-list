@@ -7,7 +7,7 @@ import Task from '../components/Task';
 jest.mock('../services/TaskService.ts', () => ({ deleteTask: jest.fn() }));
 
 const mockTaskProps = {
-  id: 1,
+  id: '1',
   taskDescription: 'task description',
   date: '03/11/2020 10:43:09',
 };

@@ -6,4 +6,6 @@ const get = () => taskDbRepository.get();
 
 const add = (task) => taskDbRepository.add(task);
 
-module.exports = { get, add };
+const deleteTask = (id) => taskDbRepository.deleteTask(id);
+
+module.exports = { get, add, deleteTask };
