@@ -19,3 +19,7 @@ export type SetDataOfEditedTaskActionType = {
   type: string;
   payload: TaskType | null;
 };
+
+export type WrapperOfAddAndEditTaskType = {
+  dataOfEditedTask: TaskType;
+};

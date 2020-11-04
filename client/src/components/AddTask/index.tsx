@@ -25,17 +25,17 @@ const useStyles = makeStyles({
   },
 });
 
-const AddNewTask = (): JSX.Element => {
+const AddTask = (): JSX.Element => {
   const classes = useStyles();
 
   const [taskDescription, setTaskDescription] = useState('');
 
-  const { add } = taskService;
-
   const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
 
-  const addTaskHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
+    const { add } = taskService;
 
     add(taskDescription);
     setTaskDescription('');
@@ -44,7 +44,7 @@ const AddNewTask = (): JSX.Element => {
   return (
     <Container className={classes.container}>
       <Typography variant='h5'>Add new task</Typography>
-      <form className={classes.form} onSubmit={addTaskHandler}>
+      <form className={classes.form} onSubmit={submitHandler}>
         <TextField
           className={classes.textField}
           variant='outlined'
@@ -63,4 +63,4 @@ const AddNewTask = (): JSX.Element => {
   );
 };
 
-export default AddNewTask;
+export default AddTask;

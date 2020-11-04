@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
-import AddNewTask from '../components/AddNewTask';
+import AddNewTask from '../components/AddTask';
 // import taskService from '../services/TaskService';
 
 jest.mock('../services/TaskService.ts', () => ({ addTask: jest.fn() }));

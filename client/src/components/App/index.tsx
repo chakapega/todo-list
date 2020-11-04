@@ -4,7 +4,7 @@ import store from '../../store';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import AddNewTask from '../AddNewTask';
+import WrapperOfAddAndEditTask from '../WrapperOfAddAndEditTask';
 import TaskList from '../TaskList';
 
 const useStyles = makeStyles({
@@ -21,7 +21,7 @@ const App = (): JSX.Element => {
   return (
     <Provider store={store}>
       <Container className={classes.container}>
-        <AddNewTask />
+        <WrapperOfAddAndEditTask />
         <TaskList />
       </Container>
     </Provider>
