@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { setDataOfEditedTask } from '../../store/task/actionCreators';
+import { setDataOfEditedTask, setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
+import taskService from '../../services/TaskService';
+import { EditTaskPropsType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
@@ -26,7 +28,11 @@ const useStyles = makeStyles({
   },
 });
 
-const EditTask = ({ dataOfEditedTask: { taskDescription }, setDataOfEditedTask }): JSX.Element => {
+const EditTask = ({
+  dataOfEditedTask: { id, taskDescription },
+  setDataOfEditedTask,
+  setTasks,
+}: EditTaskPropsType): JSX.Element => {
   const classes = useStyles();
 
   const [editedTaskDescription, setEditedTaskDescription] = useState(taskDescription);
@@ -34,7 +40,15 @@ const EditTask = ({ dataOfEditedTask: { taskDescription }, setDataOfEditedTask }
   const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setEditedTaskDescription(e.target.value);
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {};
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+
+    const { edit, get } = taskService;
+
+    await edit(id, editedTaskDescription);
+    setDataOfEditedTask(null);
+    setTasks(await get());
+  };
 
   const cancelHandler = (): void => {
     setDataOfEditedTask(null);
@@ -66,6 +80,7 @@ const EditTask = ({ dataOfEditedTask: { taskDescription }, setDataOfEditedTask }
 
 const mapDispatchToProps = (dispatch) => ({
   setDataOfEditedTask: (dataOfEditedTask) => dispatch(setDataOfEditedTask(dataOfEditedTask)),
+  setTasks: (tasks) => dispatch(setTasks(tasks)),
 });
 
 export default connect(null, mapDispatchToProps)(EditTask);

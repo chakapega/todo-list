@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { setTasks } from '../../store/task/actionCreators';
 import { List } from '@material-ui/core';
 import Task from '../Task';
-import { TaskListType, TaskType } from '../../types';
+import { TaskListPropsType, TaskType } from '../../types';
 import taskService from '../../services/TaskService';
 
-const TaskList = ({ tasks, setTasks }: TaskListType): JSX.Element => {
+const TaskList = ({ tasks, setTasks }: TaskListPropsType): JSX.Element => {
   useEffect((): void => {
     const { get } = taskService;
 

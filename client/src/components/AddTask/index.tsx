@@ -5,7 +5,7 @@ import { setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
 import taskService from '../../services/TaskService';
-import { TaskListType } from '../../types';
+import { AddTaskPropsType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = ({ setTasks }: TaskListType): JSX.Element => {
+const AddTask = ({ setTasks }: AddTaskPropsType): JSX.Element => {
   const classes = useStyles();
 
   const [taskDescription, setTaskDescription] = useState('');

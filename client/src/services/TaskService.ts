@@ -1,4 +1,4 @@
-import {  TasksType } from '../types';
+import { TasksType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 import { getTimeStamp } from '../utils';
 
@@ -32,6 +32,22 @@ class TaskService {
       body: JSON.stringify({
         id,
       }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  edit = async (id: string, taskDescription: string) => {
+    const editedTask = {
+      id,
+      taskDescription,
+      date: getTimeStamp(),
+    };
+
+    await fetch('http://localhost:4000/api/edit-task', {
+      method: 'PUT',
+      body: JSON.stringify(editedTask),
       headers: {
         'Content-Type': 'application/json',
       },

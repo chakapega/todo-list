@@ -28,4 +28,13 @@ const deleteTask = (id: string): void => {
   tasks = tasks.filter((task) => id !== task.id);
 };
 
-module.exports = { get, add, deleteTask };
+const edit = (editedTask): void => {
+  tasks.forEach((task) => {
+    if (task.id === editedTask.id) {
+      task.taskDescription = editedTask.taskDescription;
+      task.date = editedTask.date;
+    }
+  });
+};
+
+module.exports = { get, add, deleteTask, edit };

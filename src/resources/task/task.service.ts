@@ -8,4 +8,6 @@ const add = (task) => taskDbRepository.add(task);
 
 const deleteTask = (id) => taskDbRepository.deleteTask(id);
 
-module.exports = { get, add, deleteTask };
+const edit = (editedTask) => taskDbRepository.edit(editedTask);
+
+module.exports = { get, add, deleteTask, edit };

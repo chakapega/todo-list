@@ -12,8 +12,18 @@ export type TaskPropsType = {
   setTasks: (tasks: TasksType) => void;
 };
 
-export type TaskListType = {
+export type TaskListPropsType = {
   tasks: TasksType;
+  setTasks: (tasks: TasksType) => void;
+};
+
+export type AddTaskPropsType = {
+  setTasks: (tasks: TasksType) => void;
+};
+
+export type EditTaskPropsType = {
+  dataOfEditedTask: TaskType;
+  setDataOfEditedTask: (task: TaskType) => void;
   setTasks: (tasks: TasksType) => void;
 };
 

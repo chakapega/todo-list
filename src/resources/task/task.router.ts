@@ -34,4 +34,12 @@ taskRouter.route('/delete-task').delete(
   ),
 );
 
+taskRouter.route('/edit-task').put(
+  errorCatcher(async (req, res) => {
+    taskService.edit(req.body);
+
+    res.status(OK).json();
+  }),
+);
+
 module.exports = taskRouter;
