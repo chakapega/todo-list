@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setDataOfEditedTask } from '../../store/task/actionCreators';
+import { setDataOfEditedTask, setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText } from '@material-ui/core';
 import DateRangeIcon from '@material-ui/icons/DateRange';
@@ -29,11 +29,16 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task, setDataOfEditedTask }: TaskPropsType): JSX.Element => {
+const Task = ({ task, setDataOfEditedTask, setTasks }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
   const { id, taskDescription, date } = task;
 
-  const { deleteTask } = taskService;
+  const deleteTaskHandler = async (id: string) => {
+    const { deleteTask, get } = taskService;
+
+    await deleteTask(id);
+    setTasks(await get());
+  };
 
   return (
     <ListItem className={classes.listItem}>
@@ -47,7 +52,7 @@ const Task = ({ task, setDataOfEditedTask }: TaskPropsType): JSX.Element => {
       <DeleteForeverOutlinedIcon
         className={classes.deleteForeverOutlinedIcon}
         titleAccess='delete task'
-        onClick={(): Promise<void> => deleteTask(id)}
+        onClick={(): Promise<void> => deleteTaskHandler(id)}
       />
     </ListItem>
   );
@@ -55,6 +60,7 @@ const Task = ({ task, setDataOfEditedTask }: TaskPropsType): JSX.Element => {
 
 const mapDispatchToProps = (dispatch) => ({
   setDataOfEditedTask: (dataOfEditedTask) => dispatch(setDataOfEditedTask(dataOfEditedTask)),
+  setTasks: (tasks) => dispatch(setTasks(tasks)),
 });
 
 export default connect(null, mapDispatchToProps)(Task);

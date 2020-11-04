@@ -1,18 +1,8 @@
-import { FunctionsSubscribersType, FunctionSubscriberType, TaskType, TasksType } from '../types';
+import {  TasksType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 import { getTimeStamp } from '../utils';
 
 class TaskService {
-  functionsSubscribers: FunctionsSubscribersType = [];
-
-  subscribe = (functionSubscriber: FunctionSubscriberType): void => {
-    this.functionsSubscribers.push(functionSubscriber);
-  };
-
-  notify = (): void => {
-    this.functionsSubscribers.forEach((functionSubscriber: FunctionSubscriberType): void => functionSubscriber());
-  };
-
   get = async (): Promise<TasksType> => {
     const response = await fetch('http://localhost:4000/api/tasks');
     const tasks = await response.json();
@@ -34,8 +24,6 @@ class TaskService {
         'Content-Type': 'application/json',
       },
     });
-
-    this.notify();
   };
 
   deleteTask = async (id: string): Promise<void> => {
@@ -48,8 +36,6 @@ class TaskService {
         'Content-Type': 'application/json',
       },
     });
-
-    this.notify();
   };
 }
 

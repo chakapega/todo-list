@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-const EditTask = ({ dataOfEditedTask: { id, taskDescription }, setDataOfEditedTask }): JSX.Element => {
+const EditTask = ({ dataOfEditedTask: { taskDescription }, setDataOfEditedTask }): JSX.Element => {
   const classes = useStyles();
 
   const [editedTaskDescription, setEditedTaskDescription] = useState(taskDescription);

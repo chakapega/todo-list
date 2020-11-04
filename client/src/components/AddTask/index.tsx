@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
+import { setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
 import taskService from '../../services/TaskService';
+import { TaskListType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
@@ -25,19 +28,20 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = (): JSX.Element => {
+const AddTask = ({ setTasks }: TaskListType): JSX.Element => {
   const classes = useStyles();
 
   const [taskDescription, setTaskDescription] = useState('');
 
   const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    const { add } = taskService;
+    const { add, get } = taskService;
 
-    add(taskDescription);
+    await add(taskDescription);
+    setTasks(await get());
     setTaskDescription('');
   };
 
@@ -63,4 +67,8 @@ const AddTask = (): JSX.Element => {
   );
 };
 
-export default AddTask;
+const mapDispatchToProps = (dispatch) => ({
+  setTasks: (tasks) => dispatch(setTasks(tasks)),
+});
+
+export default connect(null, mapDispatchToProps)(AddTask);

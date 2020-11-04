@@ -1,1 +1,2 @@
 export const SET_DATA_OF_EDITED_TASK = 'SET_DATA_OF_EDITED_TASK';
+export const SET_TASKS = 'SET_TASKS';
