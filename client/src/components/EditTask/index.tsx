@@ -62,6 +62,7 @@ const EditTask = ({
           className={classes.textField}
           variant='outlined'
           value={editedTaskDescription}
+          autoFocus
           onChange={textFieldchangeHandler}
           inputProps={{
             maxLength: 333,
