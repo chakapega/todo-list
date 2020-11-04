@@ -1,4 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from '../../store';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import AddNewTask from '../AddNewTask';
@@ -16,10 +19,12 @@ const App = (): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
-      <AddNewTask />
-      <TaskList />
-    </Container>
+    <Provider store={store}>
+      <Container className={classes.container}>
+        <AddNewTask />
+        <TaskList />
+      </Container>
+    </Provider>
   );
 };
 

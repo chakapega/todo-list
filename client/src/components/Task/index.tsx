@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { setDataOfEditedTask } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText } from '@material-ui/core';
 import DateRangeIcon from '@material-ui/icons/DateRange';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import { TaskPropsType } from '../../types';
 import taskService from '../../services/TaskService';
 
@@ -17,13 +21,17 @@ const useStyles = makeStyles({
     margin: '7px 0',
     color: '#757575',
   },
-  deleteForeverIcon: {
+  deleteForeverOutlinedIcon: {
+    cursor: 'pointer',
+  },
+  editOutlinedIcon: {
     cursor: 'pointer',
   },
 });
 
-const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Element => {
+const Task = ({ task, setDataOfEditedTask }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
+  const { id, taskDescription, date } = task;
 
   const { deleteTask } = taskService;
 
@@ -31,8 +39,13 @@ const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Eleme
     <ListItem className={classes.listItem}>
       <ListItemText primary={taskDescription} />
       <DateRangeIcon titleAccess={date} />
-      <DeleteForeverIcon
-        className={classes.deleteForeverIcon}
+      <EditOutlinedIcon
+        className={classes.editOutlinedIcon}
+        titleAccess='edit task'
+        onClick={() => setDataOfEditedTask(task)}
+      />
+      <DeleteForeverOutlinedIcon
+        className={classes.deleteForeverOutlinedIcon}
         titleAccess='delete task'
         onClick={(): Promise<void> => deleteTask(id)}
       />
@@ -40,4 +53,8 @@ const Task = ({ task: { id, taskDescription, date } }: TaskPropsType): JSX.Eleme
   );
 };
 
-export default Task;
+const mapDispatchToProps = (dispatch) => ({
+  setDataOfEditedTask: (dataOfEditedTask) => dispatch(setDataOfEditedTask(dataOfEditedTask)),
+});
+
+export default connect(null, mapDispatchToProps)(Task);
