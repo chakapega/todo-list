@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r ts-node/register ./src/server.ts",
     "start:watch": "nodemon",
-    "start:client": "npm run start --prefix client",
+    "start:client": "npm run start --prefix ../client",
     "dev": "concurrently \"npm run start:watch\" \"npm run start:client\"",
     "build": "tsc",
     "lint": "eslint ./",
