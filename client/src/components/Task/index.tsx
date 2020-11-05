@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setDataOfEditedTask, setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,15 +29,18 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task, setDataOfEditedTask, setTasks }: TaskPropsType): JSX.Element => {
+const Task = ({ task }: TaskPropsType): JSX.Element => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
   const { id, taskDescription, date } = task;
 
   const deleteTaskHandler = async (id: string) => {
     const { deleteTask, get } = taskService;
 
     await deleteTask(id);
-    setTasks(await get());
+    dispatch(setTasks(await get()));
   };
 
   return (
@@ -47,7 +50,7 @@ const Task = ({ task, setDataOfEditedTask, setTasks }: TaskPropsType): JSX.Eleme
       <EditOutlinedIcon
         className={classes.editOutlinedIcon}
         titleAccess='edit task'
-        onClick={() => setDataOfEditedTask(task)}
+        onClick={() => dispatch(setDataOfEditedTask(task))}
       />
       <DeleteForeverOutlinedIcon
         className={classes.deleteForeverOutlinedIcon}
@@ -58,9 +61,4 @@ const Task = ({ task, setDataOfEditedTask, setTasks }: TaskPropsType): JSX.Eleme
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setDataOfEditedTask: (dataOfEditedTask) => dispatch(setDataOfEditedTask(dataOfEditedTask)),
-  setTasks: (tasks) => dispatch(setTasks(tasks)),
-});
-
-export default connect(null, mapDispatchToProps)(Task);
+export default Task;

@@ -1,22 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { WrapperOfAddAndEditTaskType } from '../../types';
 import { Container } from '@material-ui/core';
 import EditTask from '../EditTask';
 import AddNewTask from '../AddTask';
+import { StoreStateType } from '../../types';
 
-const WrapperOfAddAndEditTask = ({ dataOfEditedTask }: WrapperOfAddAndEditTaskType): JSX.Element => {
+const WrapperOfAddAndEditTask = (): JSX.Element => {
+  const dataOfEditedTask = useSelector((state: StoreStateType) => state.task.dataOfEditedTask);
+
   return (
     <Container>
-      {dataOfEditedTask && <EditTask dataOfEditedTask={dataOfEditedTask} />}
+      {dataOfEditedTask && <EditTask />}
       {!dataOfEditedTask && <AddNewTask />}
     </Container>
   );
 };
 
-const mapStateToProps = (state) => ({
-  dataOfEditedTask: state.task.dataOfEditedTask,
-});
-
-export default connect(mapStateToProps)(WrapperOfAddAndEditTask);
+export default WrapperOfAddAndEditTask;

@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { setTasks } from '../../store/task/actionCreators';
 import { List } from '@material-ui/core';
 import Task from '../Task';
-import { TaskListPropsType, TaskType } from '../../types';
+import { TaskType } from '../../types';
 import taskService from '../../services/TaskService';
+import { StoreStateType } from '../../types';
 
-const TaskList = ({ tasks, setTasks }: TaskListPropsType): JSX.Element => {
+const TaskList = (): JSX.Element => {
+  const tasks = useSelector((state: StoreStateType) => state.task.tasks);
+
+  const dispatch = useDispatch();
+
   useEffect((): void => {
     const { get } = taskService;
 
-    get().then((tasks) => setTasks(tasks));
+    get().then((tasks) => dispatch(setTasks(tasks)));
   }, []);
 
   return (
@@ -25,12 +30,4 @@ const TaskList = ({ tasks, setTasks }: TaskListPropsType): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  tasks: state.task.tasks,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setTasks: (tasks) => dispatch(setTasks(tasks)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default TaskList;

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
 import taskService from '../../services/TaskService';
-import { AddTaskPropsType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
@@ -28,8 +27,10 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = ({ setTasks }: AddTaskPropsType): JSX.Element => {
+const AddTask = (): JSX.Element => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
 
   const [taskDescription, setTaskDescription] = useState('');
 
@@ -41,7 +42,7 @@ const AddTask = ({ setTasks }: AddTaskPropsType): JSX.Element => {
     const { add, get } = taskService;
 
     await add(taskDescription);
-    setTasks(await get());
+    dispatch(setTasks(await get()));
     setTaskDescription('');
   };
 
@@ -67,8 +68,4 @@ const AddTask = ({ setTasks }: AddTaskPropsType): JSX.Element => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setTasks: (tasks) => dispatch(setTasks(tasks)),
-});
-
-export default connect(null, mapDispatchToProps)(AddTask);
+export default AddTask;

@@ -8,23 +8,6 @@ export type TasksType = Array<TaskType>;
 
 export type TaskPropsType = {
   task: TaskType;
-  setDataOfEditedTask: (task: TaskType) => void;
-  setTasks: (tasks: TasksType) => void;
-};
-
-export type TaskListPropsType = {
-  tasks: TasksType;
-  setTasks: (tasks: TasksType) => void;
-};
-
-export type AddTaskPropsType = {
-  setTasks: (tasks: TasksType) => void;
-};
-
-export type EditTaskPropsType = {
-  dataOfEditedTask: TaskType;
-  setDataOfEditedTask: (task: TaskType) => void;
-  setTasks: (tasks: TasksType) => void;
 };
 
 export type SetDataOfEditedTaskActionType = {
@@ -39,4 +22,11 @@ export type WrapperOfAddAndEditTaskType = {
 export type SetTasksActionType = {
   type: string;
   payload: TasksType;
+};
+
+export type StoreStateType = {
+  task: {
+    dataOfEditedTask: TaskType;
+    tasks: TasksType;
+  };
 };

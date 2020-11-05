@@ -5,7 +5,7 @@ const initialState = {
   tasks: [],
 };
 
-const setEditTaskReducer = (state = initialState, action) => {
+const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DATA_OF_EDITED_TASK:
       return { ...state, dataOfEditedTask: action.payload };
@@ -16,4 +16,4 @@ const setEditTaskReducer = (state = initialState, action) => {
   }
 };
 
-export default setEditTaskReducer;
+export default taskReducer;

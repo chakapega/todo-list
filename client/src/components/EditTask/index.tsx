@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { setDataOfEditedTask, setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField, Button } from '@material-ui/core';
 import taskService from '../../services/TaskService';
-import { EditTaskPropsType } from '../../types';
+import { StoreStateType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
@@ -28,12 +28,12 @@ const useStyles = makeStyles({
   },
 });
 
-const EditTask = ({
-  dataOfEditedTask: { id, taskDescription },
-  setDataOfEditedTask,
-  setTasks,
-}: EditTaskPropsType): JSX.Element => {
+const EditTask = (): JSX.Element => {
   const classes = useStyles();
+
+  const { id, taskDescription } = useSelector((state: StoreStateType) => state.task.dataOfEditedTask);
+
+  const dispatch = useDispatch();
 
   const [editedTaskDescription, setEditedTaskDescription] = useState(taskDescription);
 
@@ -46,12 +46,12 @@ const EditTask = ({
     const { edit, get } = taskService;
 
     await edit(id, editedTaskDescription);
-    setDataOfEditedTask(null);
-    setTasks(await get());
+    dispatch(setDataOfEditedTask(null));
+    dispatch(setTasks(await get()));
   };
 
   const cancelHandler = (): void => {
-    setDataOfEditedTask(null);
+    dispatch(setDataOfEditedTask(null));
   };
 
   return (
@@ -79,9 +79,4 @@ const EditTask = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setDataOfEditedTask: (dataOfEditedTask) => dispatch(setDataOfEditedTask(dataOfEditedTask)),
-  setTasks: (tasks) => dispatch(setTasks(tasks)),
-});
-
-export default connect(null, mapDispatchToProps)(EditTask);
+export default EditTask;
