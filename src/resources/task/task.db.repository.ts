@@ -2,8 +2,8 @@ export {};
 
 let tasks = [
   {
-    id: '1',
-    taskDescription: 'task description 1',
+    id: '3',
+    taskDescription: 'task description 3',
     date: '03/11/2020 10:43:09',
   },
   {
@@ -12,8 +12,8 @@ let tasks = [
     date: '03/11/2020 09:37:50',
   },
   {
-    id: '3',
-    taskDescription: 'task description 3',
+    id: '1',
+    taskDescription: 'task description 1',
     date: '02/11/2020 15:30:33',
   },
 ];
@@ -21,7 +21,7 @@ let tasks = [
 const get = () => tasks;
 
 const add = (task): void => {
-  tasks.push(task);
+  tasks.unshift(task);
 };
 
 const deleteTask = (id: string): void => {
@@ -29,12 +29,8 @@ const deleteTask = (id: string): void => {
 };
 
 const edit = (editedTask): void => {
-  tasks.forEach((task) => {
-    if (task.id === editedTask.id) {
-      task.taskDescription = editedTask.taskDescription;
-      task.date = editedTask.date;
-    }
-  });
+  tasks = tasks.filter((task) => editedTask.id !== task.id);
+  tasks.unshift(editedTask);
 };
 
 module.exports = { get, add, deleteTask, edit };

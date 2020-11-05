@@ -1,6 +1,6 @@
 import { TasksType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
-import { getTimeStamp } from '../utils';
+import { getDate } from '../utils';
 
 class TaskService {
   get = async (): Promise<TasksType> => {
@@ -14,7 +14,7 @@ class TaskService {
     const task = {
       id: uuidv4(),
       taskDescription,
-      date: getTimeStamp(),
+      date: getDate(),
     };
 
     await fetch('http://localhost:4000/api/add-task', {
@@ -42,7 +42,7 @@ class TaskService {
     const editedTask = {
       id,
       taskDescription,
-      date: getTimeStamp(),
+      date: getDate(),
     };
 
     await fetch('http://localhost:4000/api/edit-task', {
