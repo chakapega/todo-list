@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -44,6 +45,12 @@ module.exports = {
       analyzerMode: 'disabled',
       generateStatsFile: true,
       statsOptions: { source: false },
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: './public/manifest.json', to: './manifest.json' },
+        { from: './public/images/', to: './images/' },
+      ],
     }),
   ],
 };
