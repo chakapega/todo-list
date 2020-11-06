@@ -8,22 +8,27 @@ import taskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   container: {
-    height: '110px',
+    width: '95%',
+    height: '160px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '50px',
-    marginBottom: '20px',
+    marginBottom: '10px',
+    marginLeft: '0',
+    marginRight: '0',
+    padding: '0',
   },
   form: {
-    width: '500px',
+    width: '100%',
+    height: '110px',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   textField: {
-    width: '400px',
+    width: '100%',
   },
 });
 

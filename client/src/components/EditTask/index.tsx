@@ -3,28 +3,36 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setDataOfEditedTask, setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, TextField, Button } from '@material-ui/core';
+import { Container, Typography, TextField, Button, Box } from '@material-ui/core';
 import taskService from '../../services/TaskService';
 import { StoreStateType } from '../../types';
 
 const useStyles = makeStyles({
   container: {
-    height: '110px',
+    width: '95%',
+    height: '160px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '50px',
-    marginBottom: '20px',
+    marginBottom: '10px',
+    padding: '0',
   },
   form: {
-    width: '700px',
+    width: '100%',
+    height: '110px',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   textField: {
-    width: '500px',
+    width: '100%',
+  },
+  box: {
+    width: '200px',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
 
@@ -68,12 +76,14 @@ const EditTask = (): JSX.Element => {
             maxLength: 333,
           }}
         />
-        <Button type='submit' color='primary' variant='contained' disabled={!editedTaskDescription}>
-          Edit
-        </Button>
-        <Button type='button' color='primary' variant='contained' onClick={cancelHandler}>
-          Cancel
-        </Button>
+        <Box className={classes.box}>
+          <Button type='submit' color='primary' variant='contained' disabled={!editedTaskDescription}>
+            Edit
+          </Button>
+          <Button type='button' color='primary' variant='contained' onClick={cancelHandler}>
+            Cancel
+          </Button>
+        </Box>
       </form>
     </Container>
   );

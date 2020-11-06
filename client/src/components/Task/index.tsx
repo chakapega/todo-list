@@ -12,7 +12,7 @@ import taskService from '../../services/TaskService';
 
 const useStyles = makeStyles({
   listItem: {
-    width: '600px',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     borderRadius: '3px',
     margin: '7px 0',
     color: '#757575',
+    wordWrap: 'break-word',
   },
   deleteForeverOutlinedIcon: {
     cursor: 'pointer',
