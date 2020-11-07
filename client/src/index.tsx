@@ -7,15 +7,8 @@ import './index.css';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
-window.addEventListener('load', () => {
+window.addEventListener('load', (): void => {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('./serviceWorker.js')
-      .then((registration) => {
-        console.log('service worker succesfully registered', registration);
-      })
-      .catch((error) => {
-        console.log('service worker registration failed', error);
-      });
+    navigator.serviceWorker.register('./serviceWorker.js');
   }
 });

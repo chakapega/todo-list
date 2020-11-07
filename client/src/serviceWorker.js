@@ -1,23 +1,16 @@
-const staticCacheName = 'static-cache-v0';
-const staticAssets = ['./bundle.js', './manifest.json', './icon-512x512.png'];
+const cacheName = 'version-1';
+const urlsToCache = ['../', '../bundle.js', '../manifest.json', '../images/logo_192x192.png'];
 
 self.addEventListener('install', () => {
-  // const cache = await caches.open(staticCacheName);
-
-  // await cache.addAll(staticAssets);
-  // console.log('service worker installed');
-
-  caches.open(staticCacheName).then((cache) => {
-    cache.addAll(['./bundle.js']);
+  caches.open(cacheName).then((cache) => {
+    cache.addAll(urlsToCache);
   });
-
-  console.log('service worker installed');
 });
 
-self.addEventListener('activate', async () => {
-  console.log('service worker activated');
-});
-
-self.addEventListener('fetch', async (event) => {
-  console.log('fetch urls: ', event.request.url);
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
+    }),
+  );
 });
