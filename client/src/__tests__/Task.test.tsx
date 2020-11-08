@@ -1,47 +1,73 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import store from '../store';
+
 import Task from '../components/Task';
-// import taskService from '../services/TaskService';
+import taskService from '../services/TaskService';
+
+const mockTask = {
+  id: '3',
+  taskDescription: 'task description 3',
+  date: '03/11/2020 10:43:09',
+};
+
+const renderComponent = () =>
+  render(
+    <Provider store={store}>
+      <Task task={mockTask} />
+    </Provider>,
+  );
 
 jest.mock('../services/TaskService.ts', () => ({ deleteTask: jest.fn() }));
 
-const mockTaskProps = {
-  id: '1',
-  taskDescription: 'task description',
-  date: '03/11/2020 10:43:09',
-};
-const renderComponent = () => render(<Task task={mockTaskProps} />);
-
-describe('Task', () => {
+describe('renders Task', () => {
   it('renders ListItem', () => {
-    const { container } = renderComponent();
+    const { getByRole } = renderComponent();
+    const listItem = getByRole('listitem');
 
-    expect(container.firstChild).toBeInTheDocument();
+    expect(listItem).toBeInTheDocument();
   });
 
   it('renders ListItemText', () => {
     const { getByText } = renderComponent();
-    const { taskDescription } = mockTaskProps;
+    const { taskDescription } = mockTask;
     const listItemText = getByText(taskDescription);
 
     expect(listItemText).toBeInTheDocument();
-    expect(listItemText).toHaveTextContent(taskDescription);
+  });
+
+  it('renders DateRangeIcon', () => {
+    const { getByText } = renderComponent();
+    const { date } = mockTask;
+    const dateRangeIcon = getByText(date);
+
+    expect(dateRangeIcon).toBeInTheDocument();
+  });
+
+  it('renders EditOutlinedIcon', () => {
+    const { getByText } = renderComponent();
+    const editOutlinedIcon = getByText('Edit task');
+
+    expect(editOutlinedIcon).toBeInTheDocument();
   });
 
   it('renders DeleteForeverIcon', () => {
-    const { container } = renderComponent();
-    const deleteForeverIcon = container.querySelector('svg');
+    const { getByText } = renderComponent();
+    const deleteForeverIcon = getByText('Delete task');
 
     expect(deleteForeverIcon).toBeInTheDocument();
   });
+});
 
-  // it('checks the call to the deleteTask method from the service', () => {
-  //   const { container } = renderComponent();
-  //   const deleteForeverIcon = container.querySelector('svg');
-  //   const { deleteTask } = taskService;
+describe('checks Task', () => {
+  it('checks the call to the deleteTask method from the task service', () => {
+    const { getByText } = renderComponent();
+    const deleteForeverIcon = getByText('Delete task');
+    const { deleteTask } = taskService;
 
-  //   fireEvent.click(deleteForeverIcon);
-  //   expect(deleteTask).toBeCalled();
-  // });
+    fireEvent.click(deleteForeverIcon);
+    expect(deleteTask).toBeCalled();
+  });
 });

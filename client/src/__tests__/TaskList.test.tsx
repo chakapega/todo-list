@@ -1,43 +1,36 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from '../store';
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
+
 import TaskList from '../components/TaskList';
-// import taskService from '../services/TaskService';
+import taskService from '../services/TaskService';
 
-const renderComponent = () => render(<TaskList />);
-const mockTasks = [
-  {
-    id: 1,
-    taskDescription: 'task description 1',
-  },
-  {
-    id: 2,
-    taskDescription: 'task description 2',
-  },
-];
+const renderComponent = () =>
+  render(
+    <Provider store={store}>
+      <TaskList />
+    </Provider>,
+  );
 
-jest.mock('../services/TaskService.ts', () => ({ getTasks: jest.fn(() => mockTasks), subscribe: jest.fn() }));
+jest.mock('../services/TaskService.ts', () => ({ get: jest.fn(() => []) }));
 
-describe('TaskList', () => {
+describe('renders TaskList', () => {
   it('renders List', () => {
-    const { container } = renderComponent();
+    const { getByRole } = renderComponent();
+    const list = getByRole('list');
 
-    expect(container.firstChild).toBeInTheDocument();
+    expect(list).toBeInTheDocument();
   });
+});
 
-  // it('checks the call to the subscribe method from the service', () => {
-  //   renderComponent();
+describe('checks TaskList', () => {
+  it('checks the call to the get method from the task service', () => {
+    renderComponent();
 
-  //   const { subscribe } = taskService;
+    const { get } = taskService;
 
-  //   expect(subscribe).toBeCalled();
-  // });
-
-  // it('checks the call to the getTasks method from the service', () => {
-  //   renderComponent();
-
-  //   const { getTasks } = taskService;
-
-  //   expect(getTasks).toBeCalled();
-  // });
+    expect(get).toBeCalled();
+  });
 });

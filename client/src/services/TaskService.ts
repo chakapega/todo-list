@@ -1,17 +1,17 @@
-import { TasksType } from '../types';
+import { TasksType, TaskType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 import { getDate } from '../utils';
 
 class TaskService {
-  get = async (): Promise<TasksType> => {
+  get = async () => {
     const response = await fetch('http://localhost:4000/api/tasks');
-    const tasks = await response.json();
+    const tasks: TasksType = await response.json();
 
     return tasks;
   };
 
-  add = async (taskDescription: string): Promise<void> => {
-    const task = {
+  add = async (taskDescription: string) => {
+    const task: TaskType = {
       id: uuidv4(),
       taskDescription,
       date: getDate(),
@@ -26,7 +26,7 @@ class TaskService {
     });
   };
 
-  deleteTask = async (id: string): Promise<void> => {
+  deleteTask = async (id: string) => {
     await fetch('http://localhost:4000/api/delete-task', {
       method: 'DELETE',
       body: JSON.stringify({
@@ -39,7 +39,7 @@ class TaskService {
   };
 
   edit = async (id: string, taskDescription: string) => {
-    const editedTask = {
+    const editedTask: TaskType = {
       id,
       taskDescription,
       date: getDate(),

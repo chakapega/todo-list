@@ -54,12 +54,12 @@ const Task: React.FC<TaskPropsType> = ({ task }: TaskPropsType) => {
       <DateRangeIcon titleAccess={date} />
       <EditOutlinedIcon
         className={classes.editOutlinedIcon}
-        titleAccess='edit task'
+        titleAccess='Edit task'
         onClick={() => editTaskHandler()}
       />
       <DeleteForeverOutlinedIcon
         className={classes.deleteForeverOutlinedIcon}
-        titleAccess='delete task'
+        titleAccess='Delete task'
         onClick={() => deleteTaskHandler(id)}
       />
     </ListItem>
