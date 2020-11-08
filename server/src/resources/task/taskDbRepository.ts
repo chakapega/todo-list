@@ -1,6 +1,6 @@
-export {};
+import { TasksType, TaskType } from '../../types';
 
-let tasks = [
+let tasks: TasksType = [
   {
     id: '3',
     taskDescription: 'task description 3',
@@ -18,19 +18,19 @@ let tasks = [
   },
 ];
 
-const get = () => tasks;
+const get = async (): Promise<TasksType> => tasks;
 
-const add = (task): void => {
+const add = async (task: TaskType): Promise<void> => {
   tasks.unshift(task);
 };
 
-const deleteTask = (id: string): void => {
+const deleteTask = async (id: string): Promise<void> => {
   tasks = tasks.filter((task) => id !== task.id);
 };
 
-const edit = (editedTask): void => {
+const edit = async (editedTask: TaskType): Promise<void> => {
   tasks = tasks.filter((task) => editedTask.id !== task.id);
   tasks.unshift(editedTask);
 };
 
-module.exports = { get, add, deleteTask, edit };
+export default { get, add, deleteTask, edit };

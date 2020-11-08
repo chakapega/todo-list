@@ -1,13 +1,11 @@
-export {};
+import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 
-const { INTERNAL_SERVER_ERROR, getStatusText } = require('http-status-codes');
-
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, next): void => {
   if (err) {
-    res.status(INTERNAL_SERVER_ERROR).send(getStatusText(INTERNAL_SERVER_ERROR));
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
   }
 
   next();
 };
 
-module.exports = errorHandler;
+export default errorHandler;

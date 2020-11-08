@@ -1,5 +1,3 @@
-export {};
-
 const errorCatcher = (fn) => async (req, res, next) => {
   try {
     return await fn(req, res, next);
@@ -8,4 +6,4 @@ const errorCatcher = (fn) => async (req, res, next) => {
   }
 };
 
-module.exports = errorCatcher;
+export default errorCatcher;

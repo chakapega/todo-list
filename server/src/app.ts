@@ -1,15 +1,14 @@
-export {};
+import express from 'express';
+import cors from 'cors';
 
-const express = require('express');
+import taskRouter from './resources/task/taskRouter';
+import errorHandler from './middlewares/errorHandler';
+
 const app = express();
-const cors = require('cors');
-
-const taskRouter = require('./resources/task/task.router');
-const errorHandler = require('./middlewares/errorHandler');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api', taskRouter);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;
