@@ -32,16 +32,18 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = (): JSX.Element => {
+const AddTask: React.FC = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
 
   const [taskDescription, setTaskDescription] = useState('');
 
-  const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => setTaskDescription(e.target.value);
+  const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskDescription(e.target.value);
+  };
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { add, get } = taskService;
@@ -62,7 +64,7 @@ const AddTask = (): JSX.Element => {
           value={taskDescription}
           onChange={textFieldchangeHandler}
           inputProps={{
-            maxLength: 333,
+            maxLength: 300,
           }}
         />
         <Button type='submit' color='primary' variant='contained' disabled={!taskDescription}>

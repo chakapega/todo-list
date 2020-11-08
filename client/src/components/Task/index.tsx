@@ -30,12 +30,16 @@ const useStyles = makeStyles({
   },
 });
 
-const Task = ({ task }: TaskPropsType): JSX.Element => {
+const Task: React.FC<TaskPropsType> = ({ task }: TaskPropsType) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
 
   const { id, taskDescription, date } = task;
+
+  const editTaskHandler = () => {
+    dispatch(setDataOfEditedTask(task));
+  };
 
   const deleteTaskHandler = async (id: string) => {
     const { deleteTask, get } = taskService;
@@ -51,12 +55,12 @@ const Task = ({ task }: TaskPropsType): JSX.Element => {
       <EditOutlinedIcon
         className={classes.editOutlinedIcon}
         titleAccess='edit task'
-        onClick={() => dispatch(setDataOfEditedTask(task))}
+        onClick={() => editTaskHandler()}
       />
       <DeleteForeverOutlinedIcon
         className={classes.deleteForeverOutlinedIcon}
         titleAccess='delete task'
-        onClick={(): Promise<void> => deleteTaskHandler(id)}
+        onClick={() => deleteTaskHandler(id)}
       />
     </ListItem>
   );

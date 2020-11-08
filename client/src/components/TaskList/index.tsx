@@ -5,7 +5,6 @@ import { setTasks } from '../../store/task/actionCreators';
 import { makeStyles } from '@material-ui/core/styles';
 import { List } from '@material-ui/core';
 import Task from '../Task';
-import { TaskType } from '../../types';
 import taskService from '../../services/TaskService';
 import { StoreStateType } from '../../types';
 
@@ -16,26 +15,29 @@ const useStyles = makeStyles({
   },
 });
 
-const TaskList = (): JSX.Element => {
+const TaskList: React.FC = () => {
   const classes = useStyles();
-
-  const tasks = useSelector((state: StoreStateType) => state.task.tasks);
 
   const dispatch = useDispatch();
 
-  useEffect((): void => {
-    const { get } = taskService;
+  const tasks = useSelector((state: StoreStateType) => state.task.tasks);
 
-    get().then((tasks) => dispatch(setTasks(tasks)));
+  const getTasks = async () => {
+    const { get } = taskService;
+    const tasks = await get();
+
+    dispatch(setTasks(tasks));
+  };
+
+  useEffect(() => {
+    getTasks();
   }, []);
 
   return (
     <List className={classes.list}>
-      {tasks.map((task: TaskType) => {
-        const { id } = task;
-
-        return <Task key={id} task={task} />;
-      })}
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} />
+      ))}
     </List>
   );
 };

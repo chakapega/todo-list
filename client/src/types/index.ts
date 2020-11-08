@@ -7,7 +7,7 @@ export type TaskType = {
 export type TasksType = Array<TaskType>;
 
 export type TaskPropsType = {
-  task: TaskType;
+  task?: TaskType;
 };
 
 export type SetDataOfEditedTaskActionType = {

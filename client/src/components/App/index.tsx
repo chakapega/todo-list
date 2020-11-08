@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   const classes = useStyles();
 
   return (

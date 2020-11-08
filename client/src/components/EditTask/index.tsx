@@ -36,19 +36,20 @@ const useStyles = makeStyles({
   },
 });
 
-const EditTask = (): JSX.Element => {
+const EditTask: React.FC = () => {
   const classes = useStyles();
-
-  const { id, taskDescription } = useSelector((state: StoreStateType) => state.task.dataOfEditedTask);
 
   const dispatch = useDispatch();
 
+  const { id, taskDescription } = useSelector((state: StoreStateType) => state.task.dataOfEditedTask);
+
   const [editedTaskDescription, setEditedTaskDescription] = useState(taskDescription);
 
-  const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const textFieldchangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedTaskDescription(e.target.value);
+  };
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { edit, get } = taskService;
@@ -58,7 +59,7 @@ const EditTask = (): JSX.Element => {
     dispatch(setTasks(await get()));
   };
 
-  const cancelHandler = (): void => {
+  const cancelHandler = () => {
     dispatch(setDataOfEditedTask(null));
   };
 
