@@ -55,19 +55,19 @@ const AddTask: React.FC = () => {
 
   return (
     <Container className={classes.container}>
-      <Typography variant='h5'>Add new task</Typography>
+      <Typography variant="h5">Add new task</Typography>
       <form className={classes.form} onSubmit={submitHandler}>
         <TextField
           className={classes.textField}
-          variant='outlined'
-          label='Write your task'
+          variant="outlined"
+          label="Write your task"
           value={taskDescription}
           onChange={textFieldchangeHandler}
           inputProps={{
             maxLength: 300,
           }}
         />
-        <Button type='submit' color='primary' variant='contained' disabled={!taskDescription}>
+        <Button type="submit" color="primary" variant="contained" disabled={!taskDescription}>
           Add
         </Button>
       </form>

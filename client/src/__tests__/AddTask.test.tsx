@@ -11,7 +11,7 @@ const renderComponent = () =>
   render(
     <Provider store={store}>
       <AddTask />
-    </Provider>,
+    </Provider>
   );
 
 jest.mock('../services/TaskService.ts', () => ({ add: jest.fn() }));

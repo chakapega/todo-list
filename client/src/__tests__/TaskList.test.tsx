@@ -11,7 +11,7 @@ const renderComponent = () =>
   render(
     <Provider store={store}>
       <TaskList />
-    </Provider>,
+    </Provider>
   );
 
 jest.mock('../services/TaskService.ts', () => ({ get: jest.fn(() => []) }));

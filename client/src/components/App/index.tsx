@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '100%',
       },
     },
-  }),
+  })
 );
 
 const App: React.FC = () => {

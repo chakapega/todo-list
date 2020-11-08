@@ -7,7 +7,7 @@ import './index.css';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
-window.addEventListener('load', (): void => {
+window.addEventListener('load', () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./serviceWorker.js');
   }

@@ -11,7 +11,7 @@ const renderComponent = () =>
   render(
     <Provider store={store}>
       <EditTask />
-    </Provider>,
+    </Provider>
   );
 
 jest.mock('react-redux', () => ({

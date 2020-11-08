@@ -65,11 +65,11 @@ const EditTask: React.FC = () => {
 
   return (
     <Container className={classes.container}>
-      <Typography variant='h5'>Edit your task</Typography>
+      <Typography variant="h5">Edit your task</Typography>
       <form className={classes.form} onSubmit={submitHandler}>
         <TextField
           className={classes.textField}
-          variant='outlined'
+          variant="outlined"
           value={editedTaskDescription}
           autoFocus
           onChange={textFieldchangeHandler}
@@ -78,10 +78,10 @@ const EditTask: React.FC = () => {
           }}
         />
         <Box className={classes.box}>
-          <Button type='submit' color='primary' variant='contained' disabled={!editedTaskDescription}>
+          <Button type="submit" color="primary" variant="contained" disabled={!editedTaskDescription}>
             Edit
           </Button>
-          <Button type='button' color='primary' variant='contained' onClick={cancelHandler}>
+          <Button type="button" color="primary" variant="contained" onClick={cancelHandler}>
             Cancel
           </Button>
         </Box>

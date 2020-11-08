@@ -1,6 +1,6 @@
 import { TasksType, TaskType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
-import { getDate } from '../utils';
+import getDate from '../utils/getDate';
 
 class TaskService {
   get = async () => {

@@ -17,7 +17,7 @@ const renderComponent = () =>
   render(
     <Provider store={store}>
       <Task task={mockTask} />
-    </Provider>,
+    </Provider>
   );
 
 jest.mock('../services/TaskService.ts', () => ({ deleteTask: jest.fn() }));
