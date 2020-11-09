@@ -1,8 +1,14 @@
-const errorCatcher = (fn) => async (req, res, next) => {
+import express from 'express';
+
+const errorCatcher = (fn: (req: express.Request, res: express.Response) => Promise<void>) => async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+): Promise<void> => {
   try {
-    return await fn(req, res, next);
+    await fn(req, res);
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
