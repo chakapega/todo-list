@@ -3,8 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import getDate from '../utils/getDate';
 
 class TaskService {
+  _baseApiUrl = 'http://localhost:4000/api';
+
   get = async () => {
-    const response = await fetch('http://localhost:4000/api/tasks');
+    const response = await fetch(`${this._baseApiUrl}/tasks`);
     const tasks: TasksType = await response.json();
 
     return tasks;
@@ -17,7 +19,7 @@ class TaskService {
       date: getDate(),
     };
 
-    await fetch('http://localhost:4000/api/add-task', {
+    await fetch(`${this._baseApiUrl}/add-task`, {
       method: 'POST',
       body: JSON.stringify(task),
       headers: {
@@ -27,7 +29,7 @@ class TaskService {
   };
 
   deleteTask = async (id: string) => {
-    await fetch('http://localhost:4000/api/delete-task', {
+    await fetch(`${this._baseApiUrl}/delete-task`, {
       method: 'DELETE',
       body: JSON.stringify({
         id,
@@ -45,7 +47,7 @@ class TaskService {
       date: getDate(),
     };
 
-    await fetch('http://localhost:4000/api/edit-task', {
+    await fetch(`${this._baseApiUrl}/edit-task`, {
       method: 'PUT',
       body: JSON.stringify(editedTask),
       headers: {
